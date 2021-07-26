@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# secrets
+k8s/config/next-js-secret.yaml

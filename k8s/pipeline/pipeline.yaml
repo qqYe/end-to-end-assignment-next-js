@@ -28,3 +28,15 @@ spec:
       - install-ci-test
     runAfter:
     - clone-repository
+  - name: build-image
+    taskRef:
+      kind: ClusterTask
+      name: buildah
+    runAfter:
+      - run-tests
+    params:
+      - name: IMAGE
+        value: "quay.io/fabianschwab/next-js-app:$(tasks.clone-repository.results.commit)"
+    workspaces:
+      - name: source
+        workspace: pipeline-shared-data
