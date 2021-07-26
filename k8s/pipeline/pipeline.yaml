@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: next-js-app-pipeline
+spec:
+  workspaces:
+  - name: pipeline-shared-data
+  tasks:
+  - name: clone-repository
+    taskRef:
+      kind: ClusterTask
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: pipeline-shared-data
+    params:
+    - name: url
+      value: https://github.com/fabianschwab/end-to-end-assignment-next-js.git
