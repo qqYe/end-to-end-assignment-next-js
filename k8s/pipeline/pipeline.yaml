@@ -63,3 +63,17 @@ spec:
     workspaces:
       - name: source
         workspace: pipeline-shared-data
+  - name: test-deploy
+    taskRef:
+      kind: Task
+      name: test-deploy
+    params:
+      - name: app-name
+        value: "$(params.app-name)"
+      - name: app-namespace
+        value: "$(context.pipelineRun.namespace)"
+    workspaces:
+      - name: source
+        workspace: pipeline-shared-data
+    runAfter:
+      - kustomize-build
