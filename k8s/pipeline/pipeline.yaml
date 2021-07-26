@@ -16,3 +16,15 @@ spec:
     params:
     - name: url
       value: https://github.com/fabianschwab/end-to-end-assignment-next-js.git
+  - name: run-tests
+    taskRef:
+      name: npm
+    workspaces:
+    - name: source
+      workspace: pipeline-shared-data
+    params:
+    - name: ARGS
+      value:
+      - install-ci-test
+    runAfter:
+    - clone-repository
