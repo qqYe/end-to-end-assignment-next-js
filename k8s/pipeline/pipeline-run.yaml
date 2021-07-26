@@ -6,6 +6,11 @@ spec:
   serviceAccountName: build-bot
   pipelineRef:
     name: next-js-app-pipeline
+  params:
+    - name: app-name
+      value: next-js-app
+    - name: image-repo
+      value: quay.io/fabianschwab/next-js-app
   workspaces:
   - name: pipeline-shared-data
     volumeClaimTemplate:

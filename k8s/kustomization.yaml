@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./config/deployment.yaml
+  - ./config/service.yaml
+  - ./config/route.yaml
+commonLabels:
+  app: fabianschwab-next-js-app
+  app.kubernetes.io/instance: fabianschwab-next-js-app-instance
+  app.kubernetes.io/name: fabianschwab-next-js-app
