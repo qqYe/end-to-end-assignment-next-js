@@ -35,3 +35,4 @@ yarn-error.log*
 
 # secrets
 k8s/config/next-js-secret.yaml
+k8s/config/git-credentials.yaml
