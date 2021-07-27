@@ -1,0 +1,28 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: vcs-trigger
+spec:
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: next-js-app-pipeline-
+      spec:
+        serviceAccountName: build-bot
+        pipelineRef:
+          name: next-js-app-pipeline
+        params:
+          - name: image-repo
+            value: quay.io/fabianschwab/next-js-app
+          - name: app-name
+            value: next-js-app
+        workspaces:
+          - name: pipeline-shared-data
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
